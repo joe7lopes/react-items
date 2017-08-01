@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Items from './components/Items';
-
 import logo from './logo.svg';
+import Items from './components/Items';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';

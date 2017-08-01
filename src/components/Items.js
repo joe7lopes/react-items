@@ -1,5 +1,4 @@
 import React from 'react';
-import LoadingSpinner from './LoadingSpinner';
 import DeleteItemPannel from './DeleteItemPannel';
 
 class Items extends React.Component{
@@ -10,8 +9,7 @@ class Items extends React.Component{
             items:null,
             itemsHeaders:null,
             searchText:'',
-            selectedItem: '',
-            isLoading: false
+            selectedItem: ''
         }
 
         this.handleOnSearch = this.handleOnSearch.bind(this);
@@ -32,8 +30,6 @@ class Items extends React.Component{
         }];
         const itemsHeaders = ["#","name","address","comments"];
         this.setState({items, itemsHeaders});
-        const isLoading = items.length > 0 ? false : true;
-        this.setState({isLoading});
     }
 
     handleOnSearch(event){
@@ -51,7 +47,7 @@ class Items extends React.Component{
         //deleteShop(selectedShop);
     }
     render(){
-        const{items, itemsHeaders, isLoading,searchText, selectedItem} = this.state;
+        const{items, itemsHeaders,searchText, selectedItem} = this.state;
         
         const filteredItems = items.filter( (item) => {
             return item.name.toLowerCase().search(searchText.toLowerCase()) !== -1;
@@ -80,8 +76,7 @@ class Items extends React.Component{
         return(
               <div>
                 <div className="container">
-                    { isLoading ? <LoadingSpinner/>
-                    :<div>
+                    <div>
                         <div className="input-group" style={{marginBottom:'30px'}}>
                             <span className="input-group-addon">
                             <i className="glyphicon glyphicon-search"></i>
@@ -97,7 +92,6 @@ class Items extends React.Component{
                             </tbody>
                         </table>
                     </div>
-                    }
                 </div>
                 <DeleteItemPannel item={selectedItem} onDelete={this.handleOnDeleteItem}/>
         </div>
