@@ -7,6 +7,8 @@ class Items extends React.Component{
     constructor(){
         super();
         this.state = {
+            items:null,
+            itemsHeaders:null,
             searchText:'',
             selectedItem: '',
             isLoading: false
@@ -14,6 +16,24 @@ class Items extends React.Component{
 
         this.handleOnSearch = this.handleOnSearch.bind(this);
          this.handleOnDeleteItem = this.handleOnDeleteItem.bind(this);
+    }
+
+    componentWillMount(){
+        const items = [{
+            id:1,
+            name:"item1",
+            address:"address1",
+            comments:"comments1"
+        },{
+            id:2,
+            name:"items2",
+            address:"address2",
+            comments:"comments2"
+        }];
+        const itemsHeaders = ["#","name","address","comments"];
+        this.setState({items, itemsHeaders});
+        const isLoading = items.length > 0 ? false : true;
+        this.setState({isLoading});
     }
 
     handleOnSearch(event){
@@ -31,26 +51,14 @@ class Items extends React.Component{
         //deleteShop(selectedShop);
     }
     render(){
-        const{ isLoading,searchText, selectedItem} = this.state;
-        const itemsHeaders = ["#","name","address","comments"];
-        const items = [{
-            id:1,
-            name:"item1",
-            address:"address1",
-            comments:"comments1"
-        },{
-            id:2,
-            name:"items2",
-            address:"address2",
-            comments:"comments2"
-        }];
-
+        const{items, itemsHeaders, isLoading,searchText, selectedItem} = this.state;
+        
         const filteredItems = items.filter( (item) => {
             return item.name.toLowerCase().search(searchText.toLowerCase()) !== -1;
         });
 
         //generate table header
-        const itemHeaders = itemsHeaders.map((header, index) => {
+        const tableHeader = itemsHeaders.map((header, index) => {
            return( 
                 <th key={index}>{header}</th>
            );
@@ -82,7 +90,7 @@ class Items extends React.Component{
                         </div>
                         <table className="table table-hover">
                             <thead>
-                                <tr>{itemHeaders}</tr>
+                                <tr>{tableHeader}</tr>
                             </thead>
                             <tbody>
                                 {itemRows}

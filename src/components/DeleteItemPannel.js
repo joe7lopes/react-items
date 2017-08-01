@@ -9,10 +9,10 @@ const DeleteItemPannel = ({item, onDelete}) => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <button type="button" className="close" data-dismiss="modal">&times;</button>
-                            <h4 className="modal-title">Eliminar Loja</h4>
+                            <h4 className="modal-title">Eliminar</h4>
                         </div>
                         <div className="modal-body">
-                            <p>Tem a certeza que pretende eliminar a loja
+                            <p>Tem a certeza que pretende eliminar
                                 <strong>{" " + item.name + " "}</strong> ?
                             </p>
                         </div>
