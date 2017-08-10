@@ -1,5 +1,4 @@
 import React from 'react';
-import DeleteItemPannel from './DeleteItemPannel';
 
 class Items extends React.Component{
 
@@ -13,22 +12,12 @@ class Items extends React.Component{
         }
 
         this.handleOnSearch = this.handleOnSearch.bind(this);
-         this.handleOnDeleteItem = this.handleOnDeleteItem.bind(this);
     }
 
     componentWillMount(){
-        const items = [{
-            id:1,
-            name:"item1",
-            address:"address1",
-            comments:"comments1"
-        },{
-            id:2,
-            name:"items2",
-            address:"address2",
-            comments:"comments2"
-        }];
+       
         const itemsHeaders = ["#","name","address","comments"];
+        const {items} = this.props;
         this.setState({items, itemsHeaders});
     }
 
@@ -41,11 +30,6 @@ class Items extends React.Component{
         this.setState({selectedItem:item});
     }
     
-    handleOnDeleteItem(){
-        const { selectedItem } = this.state;
-        console.log(" deleted", selectedItem);
-        //deleteShop(selectedShop);
-    }
     render(){
         const{items, itemsHeaders,searchText, selectedItem} = this.state;
         
@@ -68,7 +52,6 @@ class Items extends React.Component{
                     <td>{item.name}</td>
                     <td>{item.address}</td>
                     <td>{item.comments}</td>
-                    <td> <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#confirmDelete" onClick={this.handleOnSelectedItem.bind(this,item)}>Eliminar</button></td>
                 </tr>   
             );
         });
@@ -93,7 +76,6 @@ class Items extends React.Component{
                         </table>
                     </div>
                 </div>
-                <DeleteItemPannel item={selectedItem} onDelete={this.handleOnDeleteItem}/>
         </div>
         );
     }
